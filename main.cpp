@@ -1,15 +1,7 @@
 #include <iostream>
 #include <assert.h>
-
 #include "ColorPair.h"
 
-TelCoColorCoder::MajorColor TelCoColorCoder::ColorPair:: getMajor() {
-    return majorColor;
-}
-
-TelCoColorCoder::MinorColor TelCoColorCoder::ColorPair::getMinor() {
-    return minorColor;
-}
 std::string TelCoColorCoder::ColorPair::ToString() {
     std::string colorPairStr = MajorColorNames[majorColor];
     colorPairStr += " ";
@@ -37,12 +29,21 @@ void testPairToNumber(
     assert(pairNumber == expectedPairNumber);
 }
 
+void printManual()
+{
+    std::cout << "PairNumber" << " " << "Major" << " " << "Minor"<<std::endl;
+    for (int i = 1; i <= 25; i++) {
+        TelCoColorCoder::ColorPair cp = TelCoColorCoder::GetColorFromPairNumber(1);
+        std::cout <<"\t"<<i<<"\t"<< cp.ToString()<< std::endl;
+    }
+}
+
 int main() {
     testNumberToPair(4, TelCoColorCoder::WHITE, TelCoColorCoder::BROWN);
     testNumberToPair(5, TelCoColorCoder::WHITE, TelCoColorCoder::SLATE);
 
     testPairToNumber(TelCoColorCoder::BLACK, TelCoColorCoder::ORANGE, 12);
     testPairToNumber(TelCoColorCoder::VIOLET, TelCoColorCoder::SLATE, 25);
-
+    printManual();
     return 0;
 }
