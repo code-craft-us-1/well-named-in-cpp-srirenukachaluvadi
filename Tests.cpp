@@ -26,11 +26,21 @@ namespace TelCoColorCoder
         std::cout << "Got pair number " << pairNumber << std::endl;
         assert(pairNumber == expectedPairNumber);
     }
+    std::string getColorCodeString()
+    {
+        std::string s = "";
+        for (int i = 1; i <= 25; i++) {
+            TelCoColorCoder::ColorPair cp = TelCoColorCoder::GetColorFromPairNumber(1);
+            s += "\t" + std::to_string(i) + "\t" + cp.ToString() + "\n";
+        }
+        return s;
+    }
     void testPrint()
     {
         PrintColorPair s;
-        s.printManual();
-    }
+        std::string str=s.populateManual();
+        assert(str == getColorCodeString());
+    }   
 }
 
 

@@ -5,12 +5,21 @@
 namespace TelCoColorCoder
 {
     PrintColorPair:: PrintColorPair(){}
+    std::string header = "PairNumber Major Minor";
     void PrintColorPair:: printManual()
     {
-        std::cout << "PairNumber" << " " << "Major" << " " << "Minor" << std::endl;
+        std::cout << header<< std::endl;
+        std::cout << populateManual();
+        
+    }
+
+    std::string PrintColorPair::populateManual()
+    {
+        std::string s = "";
         for (int i = 1; i <= 25; i++) {
             TelCoColorCoder::ColorPair cp = TelCoColorCoder::GetColorFromPairNumber(1);
-            std::cout << "\t" << i << "\t" << cp.ToString() << std::endl;
+            s += "\t" + std::to_string(i) + "\t" + cp.ToString() + "\n";
         }
+        return s;
     }
 }
